@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 const async = require('async');
 const tape = require('tape');
 const path = require('path');
@@ -60,15 +58,15 @@ exports.getTests = function (type, argv) {
   return tests;
 }
 
-exports.runTests = function(runner, tests, skips, cb) {
+exports.runTests = function(runner, tests, skip, cb) {
   //run all of the tests
   if(typeof skips === 'function'){
-    cb = skips
-    skips = []
+    cb = skip
+    skips= []
   }
 
-  if(!skips)
-    skips = []
+  if(!skip)
+    skip = []
 
   async.eachSeries(Object.keys(tests), function (fileName, done) {
     var file = tests[fileName];
@@ -110,7 +108,7 @@ Object.defineProperties(tests, {
     get: require('require-all').bind(this, testDir + '/TransactionTests/')
   },
   vmTests: {
-    get: require('require-all').bind(this, testDir + '/tests/VMTests')
+    get: require('require-all').bind(this, testDir + '/VMTests')
   },
   powTests: {
     get: require('require-all').bind(this, testDir + '/PoWTests')

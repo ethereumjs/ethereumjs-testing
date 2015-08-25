@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "install": "git clone git@github.com:ethereum/tests.git"
+    "install": "git clone https://github.com/ethereum/tests"
   },
   "author": "",
   "license": "ISC",

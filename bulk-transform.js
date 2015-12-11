@@ -12,7 +12,11 @@ module.exports = function (file) {
     child_process.execSync('echo "' + testName + '/**" >> .git/info/sparse-checkout', {
       cwd: __dirname + '/tests'
     })
-    child_process.execSync('git pull --rebase --depth=1 origin master', {
+    child_process.execSync('git pull --rebase --depth=1  -X thiers', {
+      stdio: [0, 1, 2],
+      cwd: __dirname + '/tests'
+    })
+    child_process.execSync('git reset --hard', {
       stdio: [0, 1, 2],
       cwd: __dirname + '/tests'
     })

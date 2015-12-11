@@ -1,5 +1,4 @@
 const async = require('async')
-const tape = require('tape')
 const bulk = require('bulk-require')
 const child_process = require('child_process')
 const fs = require('fs')
@@ -34,7 +33,7 @@ exports.getTests = function (type, argv) {
   return tests
 }
 
-exports.runTests = function (runner, tests, skip, cb) {
+exports.runTests = function (runner, tests, tape, skip, cb) {
   // run all of the tests
   if (typeof skips === 'function') {
     cb = skip

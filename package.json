@@ -5,14 +5,18 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "install": "git clone https://github.com/ethereum/tests"
+    "install": "bash ./init.sh"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "async": "^1.4.2",
-    "ethereum-tests": "git+https://github.com/ethereum/tests.git",
-    "require-all": "^1.1.0",
-    "tape": "^4.2.0"
+    "bulk-require": "^0.2.1",
+    "bulkify": "^1.1.1"
+  },
+  "browserify": {
+    "transform": [
+      "./bulk-transform.js"
+    ]
   }
 }

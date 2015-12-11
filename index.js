@@ -114,7 +114,11 @@ function pullRepo(dir) {
       child_process.execSync('echo "' + dir + '/**" >> .git/info/sparse-checkout', {
         cwd: __dirname + '/tests'
       })
-      child_process.execSync('git pull --rebase --depth=1 origin master', {
+      child_process.execSync('git pull --rebase --depth=1 -X thiers origin master', {
+        stdio: [0, 1, 2],
+        cwd: __dirname + '/tests'
+      })
+      child_process.execSync('git reset --hard', {
         stdio: [0, 1, 2],
         cwd: __dirname + '/tests'
       })

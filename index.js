@@ -40,8 +40,9 @@ exports.runTests = function (runner, tests, tape, skip, cb) {
     skips = []
   }
 
-  if (!skip)
+  if (!skip) {
     skip = []
+  }
 
   async.eachSeries(Object.keys(tests), function (fileName, done) {
     var file = tests[fileName]
@@ -91,12 +92,12 @@ Object.defineProperties(tests, {
 
 function getTests(name) {
   pullRepo(name)
-  var tests = bulk( __dirname +'/tests/' + name + '/', ['**/*.json'])
-  var random = ['RandomTests', 'RandomBlockTest']
+  var tests = bulk(__dirname + '/tests/' + name + '/', ['**/*.json'])
+  var random = ['RandomTests', 'RandomBlockTest', 'Homestead']
   random.forEach(function (i) {
     if (tests[i]) {
       for (var prop in tests[i]) {
-        tests[prop] = tests[i][prop]
+        tests[i +' '+ prop] = tests[i][prop]
       }
       delete tests[i]
     }

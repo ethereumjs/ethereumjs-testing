@@ -30,6 +30,7 @@ exports.getTests = function (type, argv) {
 
     tests = i
   }
+  delete tests.vmSystemOperationsTest
   return tests
 }
 

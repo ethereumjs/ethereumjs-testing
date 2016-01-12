@@ -98,7 +98,14 @@ function getTests(name) {
   random.forEach(function (i) {
     if (tests[i]) {
       for (var prop in tests[i]) {
-        tests[i +' '+ prop] = tests[i][prop]
+        tests[i + ' ' + prop] = tests[i][prop]
+        if (i === 'Homestead') {
+          var homesteadTests = tests[i][prop]
+          Object.keys(homesteadTests).map(function(v){
+            homesteadTests[v].homestead = true
+            return v
+          })
+        }
       }
       delete tests[i]
     }

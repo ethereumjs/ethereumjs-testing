@@ -3,10 +3,14 @@ const bulk = require('bulk-require')
 const child_process = require('child_process')
 const fs = require('fs')
 
-// getTests('TransactionTests')
-// argv.file {string} the file to run
-// argv.test {string} the test in the file to run
-// argv.local {string} the path to the file
+/**
+ * @method getTests
+ * @param {String} type the type of test to run
+ * @param argv
+ * @param {String} argv.file the file to run
+ * @param {String} argv.test the test in the file to run
+ * @param {String} argv.local the path to the file
+ */
 exports.getTests = function (type, argv) {
 
   if (argv.local) {
@@ -34,6 +38,14 @@ exports.getTests = function (type, argv) {
   return tests
 }
 
+/**
+ * Runs a battery of tests
+ * @method runTests
+ * @param {Object} tests the tests usally fetched using `getTests`
+ * @param {Object} tape an instance of tape
+ * @param {Array.<String>} skip an Array of tests to skip
+ * @param {Function} cb the callback function
+ */
 exports.runTests = function (runner, tests, tape, skip, cb) {
   // run all of the tests
   if (typeof skips === 'function') {
@@ -91,8 +103,7 @@ Object.defineProperties(tests, {
   }
 })
 
-function getTests(name) {
-  pullRepo(name)
+function getTests (name) {
   var tests = bulk(__dirname + '/tests/' + name + '/', ['**/*.json'])
   var random = ['RandomTests', 'RandomBlockTest', 'Homestead']
   random.forEach(function (i) {
@@ -101,7 +112,7 @@ function getTests(name) {
         tests[i + ' ' + prop] = tests[i][prop]
         if (i === 'Homestead') {
           var homesteadTests = tests[i][prop]
-          Object.keys(homesteadTests).map(function(v){
+          Object.keys(homesteadTests).map(function (v) {
             homesteadTests[v].homestead = true
             return v
           })
@@ -111,25 +122,4 @@ function getTests(name) {
     }
   })
   return tests
-}
-
-function pullRepo(dir) {
-  if (!process.browser) {
-    try {
-      //pull only if the directory is not there
-      fs.statSync(__dirname + '/tests/' + dir)
-    } catch (e) {
-      child_process.execSync('echo "' + dir + '/**" >> .git/info/sparse-checkout', {
-        cwd: __dirname + '/tests'
-      })
-      child_process.execSync('git pull --depth=1', {
-        stdio: [0, 1, 2],
-        cwd: __dirname + '/tests'
-      })
-      child_process.execSync('git reset --hard', {
-        stdio: [0, 1, 2],
-        cwd: __dirname + '/tests'
-      })
-    }
-  }
 }

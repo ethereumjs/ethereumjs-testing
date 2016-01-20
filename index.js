@@ -1,7 +1,6 @@
 const async = require('async')
 const bulk = require('bulk-require')
-const child_process = require('child_process')
-const fs = require('fs')
+const path = require('path')
 
 /**
  * @method getTests
@@ -12,10 +11,9 @@ const fs = require('fs')
  * @param {String} argv.local the path to the file
  */
 exports.getTests = function (type, argv) {
-
   if (argv.local) {
     return {
-      base: require(argv.local)
+      base: require(path.join(process.cwd(), argv.local))
     }
   }
 

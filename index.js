@@ -39,6 +39,7 @@ exports.getTests = function (type, argv) {
 /**
  * Runs a battery of tests
  * @method runTests
+ * @param {Function} runner the test runner
  * @param {Object} tests the tests usally fetched using `getTests`
  * @param {Object} tape an instance of tape
  * @param {Array.<String>} skip an Array of tests to skip

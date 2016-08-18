@@ -48,8 +48,9 @@ exports.getTests = function (type, argv) {
 exports.runTests = function (runner, tests, tape, skipFn, cb) {
   // run all of the tests
 
-  async.eachSeries(Object.keys(tests), function (testCategoryName, nextTestCategory) {
-    
+  var testCategoryNames = Object.keys(tests)
+  async.eachSeries(testCategoryNames, function (testCategoryName, nextTestCategory) {
+
     var testCategory = tests[testCategoryName]
     var testNames = Object.keys(testCategory)
     async.eachSeries(testNames, function (testName, nextTest) {

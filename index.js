@@ -42,37 +42,38 @@ exports.getTests = function (type, argv) {
  * @param {Function} runner the test runner
  * @param {Object} tests the tests usally fetched using `getTests`
  * @param {Object} tape an instance of tape
- * @param {Array.<String>} skip an Array of tests to skip
+ * @param {Function} filter to enable test skipping, called with skipFn(index, testName, testData) 
  * @param {Function} cb the callback function
  */
-exports.runTests = function (runner, tests, tape, skip, cb) {
+exports.runTests = function (runner, tests, tape, skipFn, cb) {
   // run all of the tests
-  if (typeof skips === 'function') {
-    cb = skip
-    skips = []
-  }
 
-  if (!skip) {
-    skip = []
-  }
+  async.eachSeries(Object.keys(tests), function (testCategoryName, nextTestCategory) {
+    
+    var testCategory = tests[testCategoryName]
+    var testNames = Object.keys(testCategory)
+    async.eachSeries(testNames, function (testName, nextTest) {
+      var index = testNames.indexOf(testName)
+      var testData = testCategory[testName]
+      var testLabel = '[' + testCategoryName + '] ' + testName
 
-  async.eachSeries(Object.keys(tests), function (fileName, done) {
-    var file = tests[fileName]
-    async.eachSeries(Object.keys(file), function (testName, done2) {
-      var test = file[testName]
-      tape('[' + fileName + '] ' + testName, function (t) {
-        if (skip.indexOf(testName) === -1) {
-          runner(test, t, function () {
-            t.end()
-            done2()
-          })
-        } else {
+      // start test
+      tape(testLabel, function (t) {
+        var shouldSkip = skipFn(index, testName, testData)
+        if (shouldSkip) {
           t.skip(testName)
           t.end()
-          done2()
+          nextTest()
+        } else {
+          runner(testData, t, function onTestComplete() {
+            t.end()
+            nextTest()
+          })
         }
       })
-    }, done)
+
+    }, nextTestCategory)
+
   }, cb)
 }
 

@@ -17,22 +17,26 @@ exports.getTests = function (type, argv) {
     }
   }
 
-  var tests = exports.tests[type + 'Tests']
+  let tests
+  if (argv.file === 'RandomTests') {
+    tests = exports.tests.randomVMTest
+  } else {
+    tests = exports.tests[type + 'Tests']
+    // for running a single file
+    if (argv.file) {
+      var i = {}
+      i[argv.file] = tests[argv.file]
 
-  // for running a single file
-  if (argv.file) {
-    var i = {}
-    i[argv.file] = tests[argv.file]
+      // run a single test from a single file
+      if (argv.test) {
+        i[argv.file] = {}
+        i[argv.file][argv.test] = tests[argv.file][argv.test]
+      }
 
-    // run a single test from a single file
-    if (argv.test) {
-      i[argv.file] = {}
-      i[argv.file][argv.test] = tests[argv.file][argv.test]
+      tests = i
     }
-
-    tests = i
   }
-  delete tests.vmSystemOperationsTest
+
   return tests
 }
 
@@ -50,7 +54,6 @@ exports.runTests = function (runner, tests, tape, skipFn, cb) {
 
   var testCategoryNames = Object.keys(tests)
   async.eachSeries(testCategoryNames, function (testCategoryName, nextTestCategory) {
-
     var testCategory = tests[testCategoryName]
     var testNames = Object.keys(testCategory)
     async.eachSeries(testNames, function (testName, nextTest) {
@@ -98,6 +101,9 @@ Object.defineProperties(tests, {
   },
   vmTests: {
     get: getTests.bind(this, 'VMTests')
+  },
+  randomVMTest: {
+    get: getTests.bind(this, 'VMTests/RandomTests')
   },
   powTests: {
     get: getTests.bind(this, 'PoWTests')

@@ -17,22 +17,26 @@ exports.getTests = function (type, argv) {
     }
   }
 
-  var tests = exports.tests[type + 'Tests']
+  let tests
+  if (argv.file === 'RandomTests') {
+    tests = exports.tests.randomVMTest
+  } else {
+    tests = exports.tests[type + 'Tests']
+    // for running a single file
+    if (argv.file) {
+      var i = {}
+      i[argv.file] = tests[argv.file]
 
-  // for running a single file
-  if (argv.file) {
-    var i = {}
-    i[argv.file] = tests[argv.file]
+      // run a single test from a single file
+      if (argv.test) {
+        i[argv.file] = {}
+        i[argv.file][argv.test] = tests[argv.file][argv.test]
+      }
 
-    // run a single test from a single file
-    if (argv.test) {
-      i[argv.file] = {}
-      i[argv.file][argv.test] = tests[argv.file][argv.test]
+      tests = i
     }
-
-    tests = i
   }
-  delete tests.vmSystemOperationsTest
+
   return tests
 }
 
@@ -45,14 +49,10 @@ exports.getTests = function (type, argv) {
  * @param {Array.<String>} skip an Array of tests to skip
  * @param {Function} cb the callback function
  */
-exports.runTests = function (runner, tests, tape, skip, cb) {
+exports.runTests = function (runner, tests, tape, skip = [], cb) {
   // run all of the tests
   if (typeof skips === 'function') {
     cb = skip
-    skips = []
-  }
-
-  if (!skip) {
     skip = []
   }
 
@@ -96,6 +96,9 @@ Object.defineProperties(tests, {
   },
   vmTests: {
     get: getTests.bind(this, 'VMTests')
+  },
+  randomVMTest: {
+    get: getTests.bind(this, 'VMTests/RandomTests')
   },
   powTests: {
     get: getTests.bind(this, 'PoWTests')

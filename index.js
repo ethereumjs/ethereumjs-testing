@@ -17,24 +17,19 @@ exports.getTests = function (type, argv) {
     }
   }
 
-  let tests
-  if (argv.file === 'RandomTests') {
-    tests = exports.tests.randomVMTest
-  } else {
-    tests = exports.tests[type + 'Tests']
+  let tests = exports.tests[type + 'Tests']
     // for running a single file
-    if (argv.file) {
-      var i = {}
-      i[argv.file] = tests[argv.file]
+  if (argv.file) {
+    var i = {}
+    i[argv.file] = tests[argv.file]
 
-      // run a single test from a single file
-      if (argv.test) {
-        i[argv.file] = {}
-        i[argv.file][argv.test] = tests[argv.file][argv.test]
-      }
-
-      tests = i
+    // run a single test from a single file
+    if (argv.test) {
+      i[argv.file] = {}
+      i[argv.file][argv.test] = tests[argv.file][argv.test]
     }
+
+    tests = i
   }
 
   return tests
@@ -97,9 +92,6 @@ Object.defineProperties(tests, {
   vmTests: {
     get: getTests.bind(this, 'VMTests')
   },
-  randomVMTest: {
-    get: getTests.bind(this, 'VMTests/RandomTests')
-  },
   powTests: {
     get: getTests.bind(this, 'PoWTests')
   }
@@ -107,7 +99,7 @@ Object.defineProperties(tests, {
 
 function getTests (name) {
   var tests = bulk(__dirname + '/tests/' + name + '/', ['**/*.json'])
-  var random = ['RandomTests', 'RandomBlockTest', 'Homestead']
+  var random = ['RandomBlockTest', 'Homestead']
   random.forEach(function (i) {
     if (tests[i]) {
       for (var prop in tests[i]) {

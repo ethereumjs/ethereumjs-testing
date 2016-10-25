@@ -13,8 +13,8 @@
   "author": "mjbecze <mjbecze@gmail.com>",
   "license": "MPL-2.0",
   "dependencies": {
-    "async": "^1.4.2",
-    "bulk-require": "^0.2.1",
+    "async": "^2.1.2",
+    "bulk-require": "^1.0.0",
     "bulkify": "^1.1.1"
   },
   "browserify": {

@@ -41,7 +41,7 @@ exports.getTests = function (type, argv) {
  * @param {Function} runner the test runner
  * @param {Object} tests the tests usally fetched using `getTests`
  * @param {Object} tape an instance of tape
- * @param {Function} filter to enable test skipping, called with skipFn(index, testName, testData) 
+ * @param {Function} filter to enable test skipping, called with skipFn(index, testName, testData)
  * @param {Function} cb the callback function
  */
 exports.runTests = function (runner, tests, tape, skipFn, cb) {
@@ -55,7 +55,6 @@ exports.runTests = function (runner, tests, tape, skipFn, cb) {
       var index = testNames.indexOf(testName)
       var testData = testCategory[testName]
       var testLabel = '[' + testCategoryName + '] ' + testName
-
       // start test
       tape(testLabel, function (t) {
         var shouldSkip = skipFn(index, testName, testData)

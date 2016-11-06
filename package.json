@@ -13,13 +13,6 @@
   "author": "mjbecze <mjbecze@gmail.com>",
   "license": "MPL-2.0",
   "dependencies": {
-    "async": "^2.1.2",
-    "bulk-require": "^1.0.0",
-    "bulkify": "^1.1.1"
-  },
-  "browserify": {
-    "transform": [
-      "./bulk-transform.js"
-    ]
+    "node-dir": "^0.1.16"
   }
 }

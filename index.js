@@ -37,8 +37,13 @@ const getTests = exports.getTests = (testType, onFile, fileFilter = /.json$/, sk
 
 exports.getTestsFromArgs = function (testType, onFile, args = {}) {
   const fileFilter = new RegExp(args.file)
-  const testFn = args.test ? (testName) => testName !== args.test : undefined
+  let testFn = args.testFn
 
+  if (args.test) {
+    testFn = (testName) => testName !== args.test
+  } else {
+    testFn = args.testFn
+  }
   return getTests(testType, onFile, fileFilter, testFn)
 }
 

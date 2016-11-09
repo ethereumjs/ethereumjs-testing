@@ -1,6 +1,6 @@
 {
   "name": "ethereumjs-testing",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "test utils for ethereumjs-*",
   "main": "index.js",
   "scripts": {

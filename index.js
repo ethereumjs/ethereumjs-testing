@@ -36,8 +36,11 @@ const getTests = exports.getTests = (testType, onFile, fileFilter = /.json$/, sk
 }
 
 exports.getTestsFromArgs = function (testType, onFile, args = {}) {
-  const fileFilter = new RegExp(args.file)
-  let testFn = args.testFn
+  let fileFilter, testFn
+
+  if (args.file) {
+    fileFilter = new RegExp(args.file)
+  }
 
   if (args.test) {
     testFn = (testName) => testName !== args.test

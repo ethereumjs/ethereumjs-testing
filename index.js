@@ -8,10 +8,9 @@ const path = require('path')
  * @param {Object} tests the tests usally fetched using `getTests`
  * @param {Function} filter to enable test skipping, called with skipFn(index, testName, testData)
  */
-const getTests = exports.getTests = function (testType, onFile, fileFilter = /.json$/, skipFn = () => {
+const getTests = exports.getTests = (testType, onFile, fileFilter = /.json$/, skipFn = () => {
   return false
-}) {
-
+}) => {
   return new Promise((resolve, reject) => {
     dir.readFiles(path.join(__dirname, '..', 'tests', testType), {
       match: fileFilter
@@ -41,4 +40,8 @@ exports.getTestsFromArgs = function (testType, onFile, args = {}) {
   const testFn = args.test ? (testName) => testName !== args.test : undefined
 
   return getTests(testType, onFile, fileFilter, testFn)
+}
+
+exports.getSingleFile = (file) => {
+  return require(path.join(__dirname, 'tests', file))
 }

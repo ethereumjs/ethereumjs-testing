@@ -4,7 +4,8 @@
   "description": "test utils for ethereumjs-*",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node ./buildTests.js"
   },
   "repository": {
     "type": "git",
@@ -14,5 +15,8 @@
   "license": "MPL-2.0",
   "dependencies": {
     "node-dir": "^0.1.16"
+  },
+  "devDependencies": {
+    "ethereumjs-util": "^5.0.1"
   }
 }

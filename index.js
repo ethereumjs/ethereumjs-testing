@@ -12,7 +12,7 @@ const getTests = exports.getTests = (testType, onFile, fileFilter = /.json$/, sk
   return false
 }) => {
   return new Promise((resolve, reject) => {
-    dir.readFiles(path.join(__dirname, 'tests', testType), {
+    dir.readFiles(path.join(__dirname, 'lintedTests', testType), {
       match: fileFilter
     }, async (err, content, fileName, next) => {
       if (err) reject(err)
@@ -51,5 +51,5 @@ exports.getTestsFromArgs = function (testType, onFile, args = {}) {
 }
 
 exports.getSingleFile = (file) => {
-  return require(path.join(__dirname, 'tests', file))
+  return require(path.join(__dirname, 'lintedTests', file))
 }

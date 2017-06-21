@@ -38,8 +38,24 @@ const getTests = exports.getTests = (testType, onFile, fileFilter = /.json$/, sk
   })
 }
 
+function skipTest (testName, skipList) {
+  return skipList.map((skipName) => (new RegExp(`^${skipName}`)).test(testName)).some(isMatch => isMatch)
+}
+
 exports.getTestsFromArgs = function (testType, onFile, args = {}) {
   let fileFilter, skipFn
+
+  skipFn = (name) => {
+    return skipTest(name, args.skipFiles)
+  }
+
+  // setup skip function
+  if (testType === 'BlockchainTests') {
+    const forkFilter = new RegExp(`${args.forkConfig}$`)
+    skipFn = (name) => {
+      return ((forkFilter.test(name) === false) || skipTest(name, args.skipFiles))
+    }
+  }
 
   if (args.file) {
     fileFilter = new RegExp(args.file)
@@ -47,10 +63,8 @@ exports.getTestsFromArgs = function (testType, onFile, args = {}) {
 
   if (args.test) {
     skipFn = (testName) => {
-      return (args.skipFn(testName) || testName !== args.test)
+      return testName !== args.test
     }
-  } else {
-    skipFn = args.skipFn
   }
   return getTests(testType, onFile, fileFilter, skipFn)
 }

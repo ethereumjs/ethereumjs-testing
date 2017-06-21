@@ -46,14 +46,19 @@ exports.getTestsFromArgs = function (testType, onFile, args = {}) {
   let fileFilter, skipFn
 
   skipFn = (name) => {
-    return skipTest(name, args.skipFiles)
+    return skipTest(name, args.skipTests)
   }
 
-  // setup skip function
   if (testType === 'BlockchainTests') {
     const forkFilter = new RegExp(`${args.forkConfig}$`)
     skipFn = (name) => {
-      return ((forkFilter.test(name) === false) || skipTest(name, args.skipFiles))
+      return ((forkFilter.test(name) === false) || skipTest(name, args.skipTests))
+    }
+  }
+
+  if (testType === 'VMTests') {
+    skipFn = (name) => {
+      return skipTest(name, args.skipVM)
     }
   }
 

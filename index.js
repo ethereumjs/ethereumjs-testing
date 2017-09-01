@@ -8,13 +8,14 @@ const path = require('path')
  * @param {Object} tests the tests usally fetched using `getTests`
  * @param {Function} filter to enable test skipping, called with skipFn(index, testName, testData)
  */
-const getTests = exports.getTests = (testType, onFile, testDir = '', fileFilter = /.json$/, skipFn = () => {
+const getTests = exports.getTests = (testType, onFile, testDir = '', fileFilter = /.json$/, excludeDir = '', skipFn = () => {
   return false
 }) => {
   return new Promise((resolve, reject) => {
     var testPath = path.join(__dirname, 'tests', testType, testDir)
     dir.readFiles(testPath, {
-      match: fileFilter
+      match: fileFilter,
+      excludeDir: excludeDir
     }, async (err, content, fileName, next) => {
       if (err) reject(err)
 
@@ -39,7 +40,7 @@ function skipTest (testName, skipList = []) {
 }
 
 exports.getTestsFromArgs = function (testType, onFile, args = {}) {
-  let testDir, fileFilter, skipFn
+  let testDir, fileFilter, excludeDir, skipFn
 
   skipFn = (name) => {
     return skipTest(name, args.skipTests)
@@ -65,13 +66,17 @@ exports.getTestsFromArgs = function (testType, onFile, args = {}) {
   if (args.file) {
     fileFilter = new RegExp(args.file)
   }
+  
+  if (args.excludeDir) {
+    excludeDir = new RegExp(args.excludeDir)
+  }
 
   if (args.test) {
     skipFn = (testName) => {
       return testName !== args.test
     }
   }
-  return getTests(testType, onFile, testDir, fileFilter, skipFn)
+  return getTests(testType, onFile, testDir, fileFilter, excludeDir, skipFn)
 }
 
 exports.getSingleFile = (file) => {

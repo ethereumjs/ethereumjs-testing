@@ -11,11 +11,6 @@ const path = require('path')
 const getTests = exports.getTests = (testType, onFile, fileFilter = /.json$/, skipFn = () => {
   return false
 }) => {
-  if (testType === 'BlockchainTests') {
-    // currently maintained BlockchainTests are located in BlockchainTests/GeneralStateTests
-    // e.g. https://github.com/ethereum/tests/tree/e17e44a002e4c602e56486663244b74d8dbbff54/BlockchainTests/GeneralStateTests
-    testType += '/GeneralStateTests'
-  }
   return new Promise((resolve, reject) => {
     dir.readFiles(path.join(__dirname, 'tests', testType), {
       match: fileFilter

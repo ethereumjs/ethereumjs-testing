@@ -28,6 +28,7 @@ Reads tests of a certain test type from several folders and files
   - `file` - File filter to apply
   - `excludeDir` - Exclude directory filter to apply
   - `test` - Only run a single test case
+  - `testsPath` - Path to the tests repository (without the ``tests`` dir)
   - `skipTests` - List of tests to skip
   - `skipVM` - List of VM tests to skip
 

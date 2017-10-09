@@ -4,6 +4,7 @@
   "description": "test utils for ethereumjs-*",
   "main": "index.js",
   "scripts": {
+    "lint": "standard",
     "test": "node test/index.js",
     "build": "node ./buildTests.js"
   },
@@ -18,6 +19,12 @@
   },
   "devDependencies": {
     "ethereumjs-util": "^5.0.1",
+    "standard": "^10.0.3",
     "tape": "^4.8.0"
+  },
+  "standard": {
+    "ignore": [
+      "tests"
+    ]
   }
 }

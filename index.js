@@ -11,7 +11,7 @@ const path = require('path')
  */
 const getTests = exports.getTests = (testType, onFile, fileFilter = /.json$/, skipFn = () => {
   return false
-}, testDir = '', excludeDir = '', testsPath = __dirname+'/tests') => {
+}, testDir = '', excludeDir = '', testsPath = __dirname + '/tests') => { // eslint-disable-line 
   return new Promise((resolve, reject) => {
     dir.readFiles(path.join(testsPath, testType, testDir), {
       match: fileFilter,
@@ -88,7 +88,7 @@ exports.getTestsFromArgs = function (testType, onFile, args = {}) {
       return skipTest(name, args.skipVM)
     }
   }
-  
+
   if (args.singleSource) {
     return getTestFromSource(args.singleSource, onFile)
   }
@@ -96,11 +96,11 @@ exports.getTestsFromArgs = function (testType, onFile, args = {}) {
   if (args.dir) {
     testDir = args.dir
   }
-  
+
   if (args.file) {
     fileFilter = new RegExp(args.file)
   }
-  
+
   if (args.excludeDir) {
     excludeDir = new RegExp(args.excludeDir)
   }

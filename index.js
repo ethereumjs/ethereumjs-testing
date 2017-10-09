@@ -1,3 +1,4 @@
+const fs = require('fs')
 const dir = require('node-dir')
 const path = require('path')
 
@@ -38,6 +39,36 @@ function skipTest (testName, skipList = []) {
   return skipList.map((skipName) => (new RegExp(`^${skipName}`)).test(testName)).some(isMatch => isMatch)
 }
 
+/**
+ * Loads a single test specified in a file
+ * @method getTestFromSource
+ * @param {String} file or path to load a single test from
+ * @param {Function} Callback function which is invoked, and passed the contents of the specified file (or an error message)
+ */
+exports.getTestFromSource = function(file, onFile) {
+  let stream = fs.createReadStream(file)
+  let contents = ''
+  let test = null
+  
+  stream.on('data', function(data) {
+    contents += data
+  }).on('error', function(err) {
+    onFile(err)
+  }).on('end', function() {
+    try {
+      test = JSON.parse(contents)
+    } catch (e) {
+      onFile(e)
+    }
+
+    let testName = Object.keys(test)[0]
+    let testData = test[testName]
+    testData.testName = testName
+
+    onFile(null, testData)
+  })
+}
+
 exports.getTestsFromArgs = function (testType, onFile, args = {}) {
   let testsPath, testDir, fileFilter, excludeDir, skipFn
 
@@ -58,6 +89,10 @@ exports.getTestsFromArgs = function (testType, onFile, args = {}) {
     }
   }
   
+  if (args.singleSource) {
+    return getTestFromSource(args.singleSource, onFile)
+  }
+
   if (args.dir) {
     testDir = args.dir
   }

@@ -32,6 +32,11 @@ Reads tests of a certain test type from several folders and files
   - `skipTests` - List of tests to skip
   - `skipVM` - List of VM tests to skip
 
+#### `testing.getTestFromSource(file, onFile)`
+Reads custom test from a relative path or file
+- `file` - Relative path or filename
+- `onFile` - Function to run the tests (see example)
+
 #### `testing.getSingleFile(file)`
 Reads a single test file
 - `file` - Path to the file

@@ -45,16 +45,16 @@ function skipTest (testName, skipList = []) {
  * @param {String} file or path to load a single test from
  * @param {Function} Callback function which is invoked, and passed the contents of the specified file (or an error message)
  */
-exports.getTestFromSource = function(file, onFile) {
+const getTestFromSource = exports.getTestFromSource = function (file, onFile) {
   let stream = fs.createReadStream(file)
   let contents = ''
   let test = null
-  
-  stream.on('data', function(data) {
+
+  stream.on('data', function (data) {
     contents += data
-  }).on('error', function(err) {
+  }).on('error', function (err) {
     onFile(err)
-  }).on('end', function() {
+  }).on('end', function () {
     try {
       test = JSON.parse(contents)
     } catch (e) {

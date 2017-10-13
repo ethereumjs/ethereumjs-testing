@@ -10,5 +10,5 @@ testing.getTestsFromArgs('BlockchainTests', (fileName, testName, test) => {
     resolve()
   }).catch(err => console.log(err))
 }, args).then(() => {
-  console.log("Do something afterwards (e.g. t.end()).");
+  console.log('Do something afterwards (e.g. t.end()).')
 })

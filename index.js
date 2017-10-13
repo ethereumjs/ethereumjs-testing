@@ -11,7 +11,7 @@ const path = require('path')
  */
 const getTests = exports.getTests = (testType, onFile, fileFilter = /.json$/, skipFn = () => {
   return false
-}, testDir = '', excludeDir = '', testsPath = __dirname+'/tests') => {
+}, testDir = '', excludeDir = '', testsPath = __dirname + '/tests') => { // eslint-disable-line 
   return new Promise((resolve, reject) => {
     dir.readFiles(path.join(testsPath, testType, testDir), {
       match: fileFilter,
@@ -45,16 +45,16 @@ function skipTest (testName, skipList = []) {
  * @param {String} file or path to load a single test from
  * @param {Function} Callback function which is invoked, and passed the contents of the specified file (or an error message)
  */
-exports.getTestFromSource = function(file, onFile) {
+const getTestFromSource = exports.getTestFromSource = function (file, onFile) {
   let stream = fs.createReadStream(file)
   let contents = ''
   let test = null
-  
-  stream.on('data', function(data) {
+
+  stream.on('data', function (data) {
     contents += data
-  }).on('error', function(err) {
+  }).on('error', function (err) {
     onFile(err)
-  }).on('end', function() {
+  }).on('end', function () {
     try {
       test = JSON.parse(contents)
     } catch (e) {
@@ -88,7 +88,7 @@ exports.getTestsFromArgs = function (testType, onFile, args = {}) {
       return skipTest(name, args.skipVM)
     }
   }
-  
+
   if (args.singleSource) {
     return getTestFromSource(args.singleSource, onFile)
   }
@@ -96,11 +96,11 @@ exports.getTestsFromArgs = function (testType, onFile, args = {}) {
   if (args.dir) {
     testDir = args.dir
   }
-  
+
   if (args.file) {
     fileFilter = new RegExp(args.file)
   }
-  
+
   if (args.excludeDir) {
     excludeDir = new RegExp(args.excludeDir)
   }

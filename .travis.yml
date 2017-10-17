@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - "7"
+  - "6"
   - "8"
 env:
   - CXX=g++-4.8
@@ -20,9 +20,9 @@ matrix:
   fast_finish: true
   include:
     - os: linux
-      node_js: "7"
+      node_js: "6"
       env: CXX=g++-4.8 TEST_SUITE=lint
     - os: linux
-      node_js: "7"
+      node_js: "6"
       env: CXX=g++-4.8 TEST_SUITE=test
 script: npm run $TEST_SUITE

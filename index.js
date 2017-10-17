@@ -21,18 +21,18 @@ const getTests = exports.getTests = (testType, onFile, fileFilter = /.json$/, sk
 
       fileName = path.parse(fileName).name
       const tests = JSON.parse(content)
-      let promise = Promise.resolve();
+      let promise = Promise.resolve()
 
       for (let testName in tests) {
         if (!skipFn(testName)) {
           promise.then(() => {
             onFile(fileName, testName, tests[testName])
-          });  
+          })
         }
       }
       promise.then(() => {
         next()
-      });
+      })
     }, (err, files) => {
       if (err) reject(err)
       resolve(files)

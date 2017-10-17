@@ -16,18 +16,23 @@ const getTests = exports.getTests = (testType, onFile, fileFilter = /.json$/, sk
     dir.readFiles(path.join(testsPath, testType, testDir), {
       match: fileFilter,
       excludeDir: excludeDir
-    }, async (err, content, fileName, next) => {
+    }, (err, content, fileName, next) => {
       if (err) reject(err)
 
       fileName = path.parse(fileName).name
       const tests = JSON.parse(content)
+      let promise = Promise.resolve();
 
       for (let testName in tests) {
         if (!skipFn(testName)) {
-          await onFile(fileName, testName, tests[testName])
+          promise.then(() => {
+            onFile(fileName, testName, tests[testName])
+          });  
         }
       }
-      next()
+      promise.then(() => {
+        next()
+      });
     }, (err, files) => {
       if (err) reject(err)
       resolve(files)

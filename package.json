@@ -15,6 +15,7 @@
   "author": "mjbecze <mjbecze@gmail.com>",
   "license": "MPL-2.0",
   "dependencies": {
+    "asyncawait": "^1.0.6",
     "node-dir": "^0.1.16"
   },
   "devDependencies": {

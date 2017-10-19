@@ -1,6 +1,8 @@
 const fs = require('fs')
 const dir = require('node-dir')
 const path = require('path')
+var asyncFromLib = require('asyncawait/async')
+var awaitFromLib = require('asyncawait/await')
 
 /**
  * Runs a battery of tests
@@ -11,29 +13,24 @@ const path = require('path')
  */
 const getTests = exports.getTests = (testType, onFile, fileFilter = /.json$/, skipFn = () => {
   return false
-}, testDir = '', excludeDir = '', testsPath = __dirname + '/tests') => { // eslint-disable-line 
+}, testDir = '', excludeDir = '', testsPath = __dirname + '/tests') => { // eslint-disable-line
   return new Promise((resolve, reject) => {
     dir.readFiles(path.join(testsPath, testType, testDir), {
       match: fileFilter,
       excludeDir: excludeDir
-    }, (err, content, fileName, next) => {
+    }, asyncFromLib((err, content, fileName, next) => {
       if (err) reject(err)
 
       fileName = path.parse(fileName).name
       const tests = JSON.parse(content)
-      let promise = Promise.resolve()
 
       for (let testName in tests) {
         if (!skipFn(testName)) {
-          promise.then(() => {
-            onFile(fileName, testName, tests[testName])
-          })
+          awaitFromLib(onFile(fileName, testName, tests[testName]))
         }
       }
-      promise.then(() => {
-        next()
-      })
-    }, (err, files) => {
+      next()
+    }), (err, files) => {
       if (err) reject(err)
       resolve(files)
     })

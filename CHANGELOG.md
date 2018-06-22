@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
-## [1.1.0] - 2018-06-22
+## [1.1.1] - 2018-06-22
 - Updated ``tests`` submodule (``Byzantium`` compatible, partly ``Constantinople`` compatible)
 - Removed ``BlockchainTests`` limitation to ``GeneralStateTests`` subfolder
 - Support for new ``GeneralStateTests`` format
@@ -16,7 +16,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 - New ``examples/`` folder with ``read-single-file`` and ``read-tests-with-args`` example
   (also for library testing)
 
-[1.1.0]: https://github.com/ethereumjs/ethereumjs-testing/compare/v1.0.4...v1.1.0
+[1.1.1]: https://github.com/ethereumjs/ethereumjs-testing/compare/v1.0.4...v1.1.1
+
+## [1.1.0] - 2018-06-22
+
+- NPM publication error, ignore
 
 ## [1.0.4] - 2016-11-10
 - Minor Changes

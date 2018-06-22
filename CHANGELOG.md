@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [1.2.0] - 2018-06-22
+- Updated ``tests`` submodule to ``428842e`` (``Byzantium`` compatible, partly ``Constantinople`` compatible)
+
+[1.2.0]: https://github.com/ethereumjs/ethereumjs-testing/compare/v1.1.1...v1.2.0
+
 ## [1.1.1] - 2018-06-22
 - Updated ``tests`` submodule (``Byzantium`` compatible, partly ``Constantinople`` compatible)
 - Removed ``BlockchainTests`` limitation to ``GeneralStateTests`` subfolder

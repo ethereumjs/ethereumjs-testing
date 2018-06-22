@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
-## [1.1.0] - Unreleased
+## [1.1.0] - 2018-06-22
 - Updated ``tests`` submodule (``Byzantium`` compatible, partly ``Constantinople`` compatible)
 - Removed ``BlockchainTests`` limitation to ``GeneralStateTests`` subfolder
 - Support for new ``GeneralStateTests`` format

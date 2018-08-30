@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [1.2.1] - 2018-08-30
+Updated ``tests`` submodule to ``691680a``.
+
+Test changes summary:
+- ``CREATE2`` init code tests
+- Storage from self-destruct check (blockchain tests)
+- Added sealEngine to the JSON schema
+- ``RLP`` test fixes
+- Bitshift instruction test changes (``SAR``)
+- Changes in ``CREATE`` state tests and blockchain state tests
+
+[1.2.1]: https://github.com/ethereumjs/ethereumjs-testing/compare/v1.2.0...v1.2.1
+
 ## [1.2.0] - 2018-06-22
 - Updated ``tests`` submodule to ``428842e`` (``Byzantium`` compatible, partly ``Constantinople`` compatible)
 

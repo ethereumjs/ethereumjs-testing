@@ -6,6 +6,20 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [1.2.3] - 2018-10-10
+Updated ``tests`` submodule to ``9777827``.
+
+Test changes summary:
+- New ``difficultyConstantinople.json`` difficulty tests
+- Regenerated all state tests, mainly for ``SSTORE`` gas cost changes
+- Fixed wrong timestamp in tests
+- Refilled ``stCreate2`` with new gas prices
+- Refilled state tests as blockchain tests
+- Refill of VM tests
+- Corrected Constantinople expect section in state tests
+
+[1.2.3]: https://github.com/ethereumjs/ethereumjs-testing/compare/v1.2.3...v1.2.3
+
 ## [1.2.2] - 2018-09-20
 Updated ``tests`` submodule to ``3f5febc``.
 

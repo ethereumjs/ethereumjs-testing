@@ -1,6 +1,6 @@
 # SYNOPSIS  
 [![Build Status](https://img.shields.io/travis/ethereumjs/ethereumjs-testing.svg?branch=master&style=flat-square)](https://travis-ci.org/ethereumjs/ethereumjs-testing)
-[![Gitter](https://img.shields.io/gitter/room/ethereum/ethereumjs-lib.svg?style=flat-square)]() or #ethereumjs on freenode  
+[![Gitter](https://img.shields.io/gitter/room/ethereum/ethereumjs.svg?style=flat-square)]() 
 
 [![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
 
@@ -15,6 +15,9 @@ git submodule update
 cd tests
 git pull origin develop
 ```
+
+Releases on npm are outdated, latest releases are only done as tagged versions on GitHub due to npm size constraints, use e.g. ``git+https://github.com/ethereumjs/ethereumjs-testing.git#[LATEST_TAG_VERSION]`` in
+your dependencies.
 
 ## API
 

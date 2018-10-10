@@ -19,7 +19,7 @@
     "node-dir": "^0.1.16"
   },
   "devDependencies": {
-    "ethereumjs-util": "^5.0.1",
+    "ethereumjs-util": "^6.0.0",
     "standard": "^10.0.3",
     "tape": "^4.8.0"
   },

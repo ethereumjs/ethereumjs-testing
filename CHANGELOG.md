@@ -6,6 +6,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [1.2.4] - 2018-10-15
+Updated ``tests`` submodule to ``95a3092``.
+
+Test changes summary:
+- Fixed wrong difficulty tests (blockchain tests) on NoProof setting
+- Refilled wallet tests (``BlockchainTests/bcWalletTest/``)
+- Removed legacy tests under ``BlockchainTests/GeneralStateTests/stArgsZeroOneBalance/``
+- Fixed ``BLOCKHASH`` costs in Constantinople blockchain test versions
+
+[1.2.4]: https://github.com/ethereumjs/ethereumjs-testing/compare/v1.2.3...v1.2.4
+
 ## [1.2.3] - 2018-10-10
 Updated ``tests`` submodule to ``9777827``.
 
@@ -18,7 +29,7 @@ Test changes summary:
 - Refill of VM tests
 - Corrected Constantinople expect section in state tests
 
-[1.2.3]: https://github.com/ethereumjs/ethereumjs-testing/compare/v1.2.3...v1.2.3
+[1.2.3]: https://github.com/ethereumjs/ethereumjs-testing/compare/v1.2.2...v1.2.3
 
 ## [1.2.2] - 2018-09-20
 Updated ``tests`` submodule to ``3f5febc``.

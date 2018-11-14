@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [1.2.5] - 2018-11-14
+Updated ``tests`` submodule to [v6.0.0-beta.2](https://github.com/ethereum/tests/releases/tag/v6.0.0-beta.2) ``ethereum/tests`` release.
+
+##### Note:
+Tests on ``ethereum/tests`` are now released as versioned tagged releases. The ``tests`` submodule will from this release onwards directly reference the
+latest tag on ``ethereum/tests`` + link to the respective release notes.
+
+[1.2.5]: https://github.com/ethereumjs/ethereumjs-testing/compare/v1.2.4...v1.2.5
+
 ## [1.2.4] - 2018-10-15
 Updated ``tests`` submodule to ``95a3092``.
 

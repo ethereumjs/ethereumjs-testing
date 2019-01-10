@@ -1,6 +1,6 @@
 {
   "name": "ethereumjs-testing",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "test utils for ethereumjs-*",
   "main": "index.js",
   "scripts": {
@@ -19,7 +19,6 @@
     "node-dir": "^0.1.16"
   },
   "devDependencies": {
-    "ethereumjs-util": "^5.0.1",
     "standard": "^10.0.3",
     "tape": "^4.8.0"
   },

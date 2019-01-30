@@ -10,10 +10,13 @@ Uses the offical [Ethereum Tests](https://github.com/ethereum/tests).
 
 To fetch the latest tests:
 ```
-git submodule init
-git submodule update
-cd tests
-git pull origin develop
+cd [SUBMODULE_FOLDER]
+git fetch --tags origin develop
+git tag -l
+git checkout tags/[RELEASE_VERSION]
+cd ..
+git add [SUBMODULE_FOLDER]
+git commit -m "[MESSAGE_ON_TEST_RELEASE_UPDATE]"
 ```
 
 Releases on npm are outdated, latest releases are only done as tagged versions on GitHub due to npm size constraints, use e.g. ``git+https://github.com/ethereumjs/ethereumjs-testing.git#[LATEST_TAG_VERSION]`` in

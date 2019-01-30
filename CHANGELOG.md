@@ -6,6 +6,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [1.2.7] - 2019-01-30
+Updated ``tests`` submodule to `5cef36e` (Jan 24, 2019) ``ethereum/tests`` commit
+which merges the PR [#582](https://github.com/ethereum/tests/pull/582)
+with the test updates on the Constantinople pre-/post reentrancy fixes.
+
+This is just a temporary release to get some basis for further development
+and should be replaced with a tag-release based release once a new
+tag-release becomes available on the `ethereum/tests` repo.
+
+[1.2.7]: https://github.com/ethereumjs/ethereumjs-testing/compare/v1.2.6...v1.2.7
+
 ## [1.2.6] - 2019-01-10
 Updated ``tests`` submodule to [v6.0.0-beta.3](https://github.com/ethereum/tests/releases/tag/v6.0.0-beta.3) ``ethereum/tests`` release.
 

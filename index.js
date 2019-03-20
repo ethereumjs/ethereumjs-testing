@@ -1,39 +1,65 @@
 const fs = require('fs')
 const dir = require('node-dir')
 const path = require('path')
-var asyncFromLib = require('asyncawait/async')
-var awaitFromLib = require('asyncawait/await')
+
+const falsePredicate = () => false
+const defaultTestsPath = path.join(__dirname, 'tests')
 
 /**
- * Runs a battery of tests
- * @method runTests
- * @param {Function} runner the test runner
- * @param {Object} tests the tests usally fetched using `getTests`
- * @param {Function} filter to enable test skipping, called with skipFn(index, testName, testData)
+ * Returns the list of test files matching the given parameters
+ * @param {string} testType the test type (path segment)
+ * @param {Function} onFile a callback for each file
+ * @param {RegExp|Array<string>} fileFilter a {@code RegExp} or array to specify filenames to operate on
+ * @param {Function<boolean>} skipPredicate a filtering function for test names
+ * @param {string} testDir the directory inside the {@code tests/} directory to use
+ * @param {RegExp|Array<string>} excludeDir a {@code RegExp} or array to specify directories to ignore
+ * @param {string} testsPath the path to the {@code tests/} directory
+ * @return {Promise<Array<string>>} the list of test files
  */
-const getTests = exports.getTests = (testType, onFile, fileFilter = /.json$/, skipFn = () => {
-  return false
-}, testDir = '', excludeDir = '', testsPath = __dirname + '/tests') => { // eslint-disable-line
+const getTests = exports.getTests = (
+  testType,
+  onFile,
+  fileFilter = /.json$/,
+  skipPredicate = falsePredicate,
+  testDir = '',
+  excludeDir = '',
+  testsPath = defaultTestsPath
+) => {
+  const directory = path.join(testsPath, testType, testDir)
+  const options = {
+    match: fileFilter,
+    excludeDir: excludeDir
+  }
+
   return new Promise((resolve, reject) => {
-    dir.readFiles(path.join(testsPath, testType, testDir), {
-      match: fileFilter,
-      excludeDir: excludeDir
-    }, asyncFromLib((err, content, fileName, next) => {
-      if (err) reject(err)
+    const finishedCallback = (err, files) => {
+      if (err) {
+        reject(err)
+        return
+      }
 
-      fileName = path.parse(fileName).name
-      const tests = JSON.parse(content)
+      resolve(files)
+    }
 
-      for (let testName in tests) {
-        if (!skipFn(testName)) {
-          awaitFromLib(onFile(fileName, testName, tests[testName]))
+    const fileCallback = async (err, content, fileName, next) => {
+      if (err) {
+        reject(err)
+        return
+      }
+
+      const parsedFileName = path.parse(fileName).name
+      const testsByName = JSON.parse(content)
+      const testNames = Object.keys(testsByName)
+      for (const testName of testNames) {
+        if (!skipPredicate(testName)) {
+          await onFile(parsedFileName, testName, testsByName[testName])
         }
       }
+
       next()
-    }), (err, files) => {
-      if (err) reject(err)
-      resolve(files)
-    })
+    }
+
+    dir.readFiles(directory, options, fileCallback, finishedCallback)
   })
 }
 

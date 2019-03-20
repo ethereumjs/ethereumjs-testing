@@ -1,9 +1,4 @@
 language: node_js
-node_js:
-  - "6"
-  - "8"
-env:
-  - CXX=g++-4.8
 addons:
   apt:
     sources:
@@ -14,15 +9,22 @@ addons:
 env:
   global:
     - DISPLAY=:99.0
-  matrix:
-    - CXX=g++-4.8 TEST_SUITE=test
+    - CXX=g++-4.8
 matrix:
   fast_finish: true
+  allowed_failures:
+    - node_js: "node"
   include:
     - os: linux
-      node_js: "6"
-      env: CXX=g++-4.8 TEST_SUITE=lint
+      node_js: "8"
+      env: TEST_SUITE=lint
     - os: linux
-      node_js: "6"
-      env: CXX=g++-4.8 TEST_SUITE=test
+      node_js: "8"
+      env: TEST_SUITE=test
+    - os: linux
+      node_js: "10"
+      env: TEST_SUITE=test
+    - os: linux
+      node_js: "node"
+      env: TEST_SUITE=test
 script: npm run $TEST_SUITE

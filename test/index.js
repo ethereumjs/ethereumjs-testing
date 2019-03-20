@@ -8,6 +8,12 @@ tape('Test access tests', function (t) {
     st.end()
   })
 
+  t.test('should read tests', async function (st) {
+    const allTestFiles = await testing.getTests('BlockchainTests', () => {})
+    st.ok(allTestFiles.length !== 0, 'empty test list')
+    st.end()
+  })
+
   t.test('should read tests from args', function (st) {
     let args = {}
     args.dir = 'GeneralStateTests/stCallCodes'

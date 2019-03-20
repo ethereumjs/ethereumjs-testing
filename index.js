@@ -5,6 +5,17 @@ const path = require('path')
 const falsePredicate = () => false
 const defaultTestsPath = path.join(__dirname, 'tests')
 
+/**
+ * Returns the list of test files matching the given parameters
+ * @param {string} testType the test type (path segment)
+ * @param {Function} onFile a callback for each file
+ * @param {RegExp|Array<string>} fileFilter a {@code RegExp} or array to specify filenames to operate on
+ * @param {Function<boolean>} skipPredicate a filtering function for test names
+ * @param {string} testDir the directory inside the {@code tests/} directory to use
+ * @param {RegExp|Array<string>} excludeDir a {@code RegExp} or array to specify directories to ignore
+ * @param {string} testsPath the path to the {@code tests/} directory
+ * @return {Promise<Array<string>>} the list of test files
+ */
 const getTests = exports.getTests = (
   testType,
   onFile,

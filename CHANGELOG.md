@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [1.2.8] - 2019-03-20
+- Remove ``asyncawait`` dependency (browser compatibility),
+  PR [#38](https://github.com/ethereumjs/ethereumjs-testing/pull/38)
+- Dropped Node 6 support, added Node 10 support,
+  PR [#38](https://github.com/ethereumjs/ethereumjs-testing/pull/38)
+- Clean up of the ``getTests()`` function, 
+  PR [#38](https://github.com/ethereumjs/ethereumjs-testing/pull/38)
+
+[1.2.8]: https://github.com/ethereumjs/ethereumjs-testing/compare/v1.2.7...v1.2.8
+
 ## [1.2.7] - 2019-01-30
 Updated ``tests`` submodule to `5cef36e` (Jan 24, 2019) ``ethereum/tests`` commit
 which merges the PR [#582](https://github.com/ethereum/tests/pull/582)

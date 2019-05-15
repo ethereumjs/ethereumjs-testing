@@ -1,4 +1,4 @@
 [submodule "tests"]
 	path = tests
-	url = git@github.com:ewasm/tests.git
+	url = https://github.com/ewasm/tests
 	branch = wasm-tests

@@ -18,7 +18,7 @@
     "node-dir": "^0.1.16"
   },
   "devDependencies": {
-    "standard": "^10.0.3",
+    "standard": "^14.3.1",
     "tape": "^4.10.1"
   },
   "standard": {

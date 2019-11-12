@@ -6,6 +6,18 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [1.3.0] - 2019-11-12
+Updated ``tests`` submodule to [v7.0.0-beta.1](https://github.com/ethereum/tests/releases/tag/v7.0.0-beta.1) ``ethereum/tests`` release. This is the first release on
+`ethereum/tests` with substantial **Istanbul support**.
+
+Note that the release is coming with substantial format/location changes on the
+tests repo (see "Test Format Changes" section within the release notes), e.g.
+a new `LegacyTests` folder for tests on older HFs and a new subfolder structure
+for the `BlockchainTests`. These changes will likely require some adoption on
+integration.
+
+[1.3.0]: https://github.com/ethereumjs/ethereumjs-testing/compare/v1.2.8...v1.3.0
+
 ## [1.2.8] - 2019-03-20
 - Remove ``asyncawait`` dependency (browser compatibility),
   PR [#38](https://github.com/ethereumjs/ethereumjs-testing/pull/38)

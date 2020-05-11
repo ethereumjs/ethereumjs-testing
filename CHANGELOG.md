@@ -6,6 +6,20 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [1.3.1] - 2020-05-11
+Updated ``tests`` submodule to 
+[9687870](https://github.com/ethereum/tests/commit/b9f5fe33d4ebe8394f1f364bd824f1a0d8e9c345) 
+(2020-04-27) `develop` branch state of the `ethereum/tests` library.
+
+This is a pre-Berlin HF state (HF targeted for June/July 2020). Release is an intermediary
+release for testing purposes to adopt to eventual test setup changes in `ethereum/tests`
+on the usage side (`ethereumjs-vm`).
+
+Behavioral changes can be tracked along Issue
+https://github.com/ethereumjs/ethereumjs-testing/issues/44 on this repo.
+
+[1.3.1]: https://github.com/ethereumjs/ethereumjs-testing/compare/v1.3.0...v1.3.1
+
 ## [1.3.0] - 2019-11-12
 Updated ``tests`` submodule to [v7.0.0-beta.1](https://github.com/ethereum/tests/releases/tag/v7.0.0-beta.1) ``ethereum/tests`` release. This is the first release on
 `ethereum/tests` with substantial **Istanbul support**.

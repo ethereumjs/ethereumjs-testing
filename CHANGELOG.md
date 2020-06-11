@@ -21,8 +21,7 @@ description.
 Updated `tests` submodule to [v7.0.0](https://github.com/ethereum/tests/releases/tag/v7.0.0) `ethereum/tests`
 release.
 
-This is a final **pre-Berlin HF** state release and encompasses HF changes up to `Petersburg` (respectively)
-`MuirGlacier`). See release notes for a detailed list on the changes.
+This is a final **pre-Berlin HF** state release and encompasses HF changes up to `Petersburg` (respectively, `MuirGlacier`). See release notes for a detailed list on the changes.
 
 [1.3.1]: https://github.com/ethereumjs/ethereumjs-testing/compare/v1.3.0...v1.3.1
 
@@ -156,5 +155,4 @@ Test changes summary:
 
 - [0.0.2](https://github.com/ethereumjs/ethereumjs-testing/compare/v0.0.1...v0.0.2) - 2016-10-27
 - 0.0.1 - 2016-01-20
-
 

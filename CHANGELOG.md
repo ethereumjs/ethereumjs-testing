@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [1.3.3] - 2020-08-04
+Updated `tests` submodule to 
+[66a55cd42f](https://github.com/ethereum/tests/commit/66a55cd42f63845e34767504d0a7a62b452a7e7a) 
+(2020-07-13) `develop` branch state of the `ethereum/tests` library.
+
+This is an intermediary release including first `EIP-2537` (Precompile for BLS12-381 curve operations) 
+tests, see `ethereum/tests` PR [#713](https://github.com/ethereum/tests/pull/713).
+
+[1.3.3]: https://github.com/ethereumjs/ethereumjs-testing/compare/v1.3.2...v1.3.3
+
 ## [1.3.2] - 2020-06-11
 Updated `tests` submodule to 
 [84b071c](https://github.com/ethereum/tests/commit/84b071cd3747b8fec6918f04430660eecf951aa2) 

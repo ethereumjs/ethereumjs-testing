@@ -1,7 +1,7 @@
 # SYNOPSIS
 
 [![Actions Status](https://github.com/ethereumjs/ethereumjs-testing/workflows/Build/badge.svg)](https://github.com/ethereumjs/ethereumjs-testing/actions)
-[![Gitter](https://img.shields.io/gitter/room/ethereum/ethereumjs.svg)](https://gitter.im/ethereum/ethereumjs)
+[![Discord][discord-badge]][discord-link]
 
 [![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
 
@@ -61,3 +61,6 @@ Reads a single test file
 
 Examples how to read tests with the API methods above can be found in
 the [./examples](./examples/) directory.
+
+[discord-badge]: https://img.shields.io/static/v1?logo=discord&label=discord&message=Join&color=blue
+[discord-link]: https://discord.gg/TNwARpR
